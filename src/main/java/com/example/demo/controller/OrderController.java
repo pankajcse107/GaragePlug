@@ -13,12 +13,14 @@ public class OrderController {
 
             @Autowired
         public OrderController(OrderRepository orderRepository)
+
             {
                 this.orderRepository = orderRepository;
             }
 
             @PostMapping
          public Order placed(@RequestBody Order order)
+
             {
               return orderRepository.save(order);
             }
@@ -31,6 +33,7 @@ public class OrderController {
 
             @DeleteMapping("/delete")
            public void deleteAll()
+
             {
                 orderRepository.deleteAll();
             }
