@@ -3,9 +3,8 @@ package com.example.demo.customer;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="OrderTable")
-public class OrderPlaced {
-
+@Table(name = "Order")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
@@ -31,12 +30,10 @@ public class OrderPlaced {
     }
 
 
-    /*public OrderPlaced()
+    /*public Order()
     {
-
     }
-
-    public OrderPlaced(Long customer_id, Long item_id, Long orderId, int total_amount) {
+    public Order(Long customer_id, Long item_id, Long orderId, int total_amount) {
         this.customerId = customer_id;
         this.itemId = item_id;
         this.orderId = orderId;
@@ -62,7 +59,4 @@ public class OrderPlaced {
     public void setTotal_amount(int total_amount) {
         this.total_amount = total_amount;
     }
-
-
-
 }

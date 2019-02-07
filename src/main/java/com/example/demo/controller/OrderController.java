@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.customer.OrderPlaced;
+import com.example.demo.customer.Order;
 import com.example.demo.userepository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +18,13 @@ public class OrderController {
             }
 
             @PostMapping
-         public OrderPlaced placed(@RequestBody OrderPlaced order)
+         public Order placed(@RequestBody Order order)
             {
               return orderRepository.save(order);
             }
 
             @RequestMapping(method = RequestMethod.GET)
-    public Iterable<OrderPlaced> postAll()
+    public Iterable<Order> postAll()
             {
                return orderRepository.findAll();
             }
