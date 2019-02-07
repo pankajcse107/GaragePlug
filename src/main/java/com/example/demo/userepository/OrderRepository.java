@@ -1,6 +1,6 @@
 package com.example.demo.userepository;
 
-import com.example.demo.customer.Order;
+import com.example.demo.entities.Order;
 import org.springframework.stereotype.Repository;
 
 

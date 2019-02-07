@@ -1,6 +1,6 @@
 package com.example.demo.userepository;
 
-import com.example.demo.customer.Item;
+import com.example.demo.entities.Item;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

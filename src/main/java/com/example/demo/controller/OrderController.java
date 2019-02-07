@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.customer.Order;
-import com.example.demo.userepository.OrderRepository;
+import com.example.demo.entities.Order;
+import com.example.demo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,24 +9,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/order")
 public class OrderController {
 
-    OrderRepository orderRepository;
+    private OrderService orderService;
 
-            @Autowired
-        public OrderController(OrderRepository orderRepository)
+    @Autowired
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
-            {
-                this.orderRepository = orderRepository;
-            }
+    @PostMapping
+    public Order create(@RequestBody Order order) {
+        return orderService.createOrder(order);
+    }
 
-            @PostMapping
-         public Order placed(@RequestBody Order order)
-
-            {
-              return orderRepository.save(order);
-            }
-
-            @RequestMapping(method = RequestMethod.GET)
-    public Iterable<Order> postAll()
+           /* @RequestMapping(method = RequestMethod.GET)
+            public Iterable<Order> postAll()
             {
                return orderRepository.findAll();
             }
@@ -36,6 +32,6 @@ public class OrderController {
 
             {
                 orderRepository.deleteAll();
-            }
+            }*/
 
 }

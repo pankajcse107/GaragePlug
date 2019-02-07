@@ -1,7 +1,10 @@
-package com.example.demo.customer;
+package com.example.demo.entities;
+
+import lombok.Data;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name ="Users")
 public class User {
@@ -10,16 +13,16 @@ public class User {
     private Long id;
     private String name;
     private String email;
-    private int no_of_orders;
-    private String customer_Status ;
+    private int noOfOrders;
+    private String customerStatus;
 
 
-    public String getCustomer_Status() {
-        return customer_Status;
+   /* public String getCustomerStatus() {
+        return customerStatus;
     }
 
-    public void setCustomer_Status(String customer_Status) {
-        this.customer_Status = customer_Status;
+    public void setCustomerStatus(String customerStatus) {
+        this.customerStatus = customerStatus;
     }
 
 
@@ -49,7 +52,7 @@ public class User {
         this.name = name;
     }
 
-    /*public int getPhone()
+    public int getPhone()
 
     {
         return phone;
@@ -59,7 +62,7 @@ public class User {
 
     {
         this.phone = phone;
-    }*/
+    }
 
     public String getEmail()
 
@@ -73,17 +76,17 @@ public class User {
         this.email = email;
     }
 
-    public int getNo_of_orders()
+    public int getNoOfOrders()
     {
-        return no_of_orders;
+        return noOfOrders;
     }
 
-    public void setNo_of_orders(int no_of_orders)
+    public void setNoOfOrders(int noOfOrders)
     {
-        this.no_of_orders = no_of_orders;
+        this.noOfOrders = noOfOrders;
 
 
-    }
+    }*/
 
 
 

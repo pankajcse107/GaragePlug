@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.customer.User;
+import com.example.demo.entities.User;
 import com.example.demo.userepository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,9 +22,9 @@ public class UserService
     {
          userRepo.deleteAll();
     }
-    public User PostStatus(User user)
+   /* public User PostStatus(User user)
     {
-      int i = user.getNo_of_orders();
+      int i = user.getNoOfOrders();
       if(i >=10&& i<20)
       {
           System.out.println("You are promoted to gold");
@@ -39,5 +39,30 @@ public class UserService
 
       User userS = userRepo.save(user);
       return userS;
+    }*/
+    public void updateCategory(User user)
+    {
+        int i = user.getNoOfOrders();
+        if(i >=10&& i<20)
+        {
+            user.setCustomerStatus("Gold");
+        }
+        else
+        if(i>=20)
+        {
+            user.setCustomerStatus("Platinum");
+        }
+        else
+            user.setCustomerStatus("Regular");
+        User userS = userRepo.save(user);
+    }
+    public User findUser(Long id)
+    {
+        return userRepo.findById(id).get();
+    }
+
+    public User createUser(User customer)
+    {
+        return userRepo.save(customer);
     }
 }

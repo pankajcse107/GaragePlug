@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.customer.User;
+import com.example.demo.entities.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public UserController(UserRepo userRepo, UserService userService)
 @PostMapping()
   public User createCostumer(@RequestBody User customer)
  {
-    return userService.PostStatus(customer);
+    return userService.createUser(customer);
  }
  @RequestMapping(method = RequestMethod.GET)
     public  Iterable<User> get()
@@ -38,12 +38,12 @@ public UserController(UserRepo userRepo, UserService userService)
   @RequestMapping(value = "na",method = RequestMethod.GET)
     public int getOrderNo(@RequestParam (value = "name") String name ,@RequestParam(value = "id") Long id)
   {
-      return userRepo.findByNameAndId(name,id).getNo_of_orders();
+      return userRepo.findByNameAndId(name,id).getNoOfOrders();
   }
   @RequestMapping(value = "status",method = RequestMethod.GET)
           public String getStatus(@RequestParam (value = "name") String name,@RequestParam(value = "id") Long id)
   {
-      return userRepo.findByNameAndId(name,id).getCustomer_Status();
+      return userRepo.findByNameAndId(name,id).getCustomerStatus();
   }
 
   @DeleteMapping("/delete")

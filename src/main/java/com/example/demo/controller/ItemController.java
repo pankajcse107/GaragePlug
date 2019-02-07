@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.customer.Item;
+import com.example.demo.entities.Item;
 import com.example.demo.service.ItemService;
-import com.example.demo.userepository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
