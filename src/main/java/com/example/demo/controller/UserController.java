@@ -46,11 +46,7 @@ public UserController( UserService userService)
   {
        userService.deleteAll();
   }
-  @PutMapping
-    public void put(User user)
-  {
-      userService.UserCatogory(user);
-  }
+
 
 
 

@@ -38,12 +38,4 @@ public class UserService
     public User findById(Long id) {
         return userRepo.findById(id).get();
     }
-    public void UserCatogory(User user)
-    {
-        if(user.getNoOfOrders() == 10 && user.getNoOfOrders()<20)
-        {
-            System.out.println(user.getCustomerStatus());
-        }
-
-    }
 }

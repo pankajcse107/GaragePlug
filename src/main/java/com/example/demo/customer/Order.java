@@ -1,6 +1,7 @@
 package com.example.demo.customer;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "order_table")
@@ -11,6 +12,9 @@ public class Order {
     private Long customerId;
     private Long itemId;
     private int totalAmount;
+
+
+
 
     public Long getItemId() {
         return itemId;
@@ -30,15 +34,6 @@ public class Order {
     }
 
 
-    /*public Order()
-    {
-    }
-    public Order(Long customer_id, Long item_id, Long orderId, int totalAmount) {
-        this.customerId = customer_id;
-        this.itemId = item_id;
-        this.orderId = orderId;
-        this.totalAmount = totalAmount;
-    }*/
 
 
     public Long getCustomerId() {

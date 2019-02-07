@@ -26,9 +26,9 @@ public class OrderController {
 
 
             {
-                int count = 0;
-                count++;
-              return orderService.post(order);
+                Order createdOrder = orderService.post(order);
+                orderService.updateCustomerStatus(createdOrder.getCustomerId());
+              return createdOrder;
             }
 
             @RequestMapping(method = RequestMethod.GET)
