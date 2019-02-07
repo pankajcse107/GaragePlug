@@ -1,6 +1,9 @@
 package com.example.demo.customer;
 
+import com.example.demo.controller.OrderController;
+
 import javax.persistence.*;
+
 
 @Entity
 @Table(name ="Users")
@@ -10,16 +13,39 @@ public class User {
     private Long id;
     private String name;
     private String email;
-    private int no_of_orders;
-    private String customer_Status ;
+    private int noOfOrders;
+    private String customerStatus;
 
+    private Order order;
+    @Enumerated(EnumType.STRING)
+    private Catogory category;
 
-    public String getCustomer_Status() {
-        return customer_Status;
+    public Catogory getCategory() {
+        return category;
     }
 
-    public void setCustomer_Status(String customer_Status) {
-        this.customer_Status = customer_Status;
+    public void setCategory(Catogory category) {
+        this.category = category;
+    }
+
+    public void getCatogory()
+    {
+        if (noOfOrders >=10 && noOfOrders <=20  )
+            System.out.println(Catogory.Gold);
+        else if (noOfOrders >=20 && noOfOrders <30)
+            System.out.println(Catogory.Platinum);
+        else
+            System.out.println(Catogory.Regular);
+    }
+
+    public String getCustomerStatus()
+    {
+        return customerStatus;
+    }
+
+    public void setCustomerStatus(String customerStatus)
+    {
+        this.customerStatus = customerStatus;
     }
 
 
@@ -73,14 +99,14 @@ public class User {
         this.email = email;
     }
 
-    public int getNo_of_orders()
+    public int getNoOfOrders()
     {
-        return no_of_orders;
+        return noOfOrders;
     }
 
-    public void setNo_of_orders(int no_of_orders)
+    public void setNoOfOrders(int noOfOrders)
     {
-        this.no_of_orders = no_of_orders;
+        this.noOfOrders = noOfOrders;
 
 
     }

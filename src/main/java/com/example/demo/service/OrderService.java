@@ -18,7 +18,12 @@ public class OrderService {
 
      public Order post(@RequestBody Order order)
      {
-         return orderRepository.save(order);
+
+          Order createdOrder = orderRepository.save(order);
+          //check count and update customer category better async
+
+
+         return createdOrder;
      }
 
      public Iterable<Order> findAll() {

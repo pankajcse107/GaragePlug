@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/order")
 public class OrderController {
 
-    OrderService orderService;
+    private OrderService orderService;
+    private UserController userController;
 
             @Autowired
         public OrderController(OrderService orderService)
+
 
             {
                 this.orderService = orderService;
@@ -22,12 +24,16 @@ public class OrderController {
             @PostMapping
          public Order placed(@RequestBody Order order)
 
+
             {
+                int count = 0;
+                count++;
               return orderService.post(order);
             }
 
             @RequestMapping(method = RequestMethod.GET)
     public Iterable<Order> postAll()
+
             {
                return orderService.findAll();
             }
@@ -35,8 +41,10 @@ public class OrderController {
             @DeleteMapping("/delete")
            public void deleteAll()
 
+
             {
                 orderService.deleteAll();
             }
+
 
 }

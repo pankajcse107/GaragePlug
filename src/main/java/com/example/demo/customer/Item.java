@@ -1,6 +1,5 @@
 package com.example.demo.customer;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 
 @Entity
@@ -8,40 +7,41 @@ import javax.persistence.*;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long item_id;
-    private Long customer_id;
-    private String item_name;
-    private int item_price;
+    private Long itemId;
+    private Long customerId;
+    private String itemName;
+    private int itemPrice;
 
     public Long getItem_id() {
-        return item_id;
+
+        return itemId;
     }
 
     public void setItem_id(Long item_id) {
-        this.item_id = item_id;
+        this.itemId = item_id;
     }
 
-    public Long getCustomer_id() {
-        return customer_id;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(Long customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
-    public String getItem_name() {
-        return item_name;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setItem_name(String item_name) {
-        this.item_name = item_name;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public int getItem_price() {
-        return item_price;
+    public int getItemPrice() {
+        return itemPrice;
     }
 
-    public void setItem_price(int item_price) {
-        this.item_price = item_price;
+    public void setItemPrice(int itemPrice) {
+        this.itemPrice = itemPrice;
     }
 }

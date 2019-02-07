@@ -10,7 +10,7 @@ public class Order {
     private Long orderId;
     private Long customerId;
     private Long itemId;
-    private int total_amount;
+    private int totalAmount;
 
     public Long getItemId() {
         return itemId;
@@ -33,11 +33,11 @@ public class Order {
     /*public Order()
     {
     }
-    public Order(Long customer_id, Long item_id, Long orderId, int total_amount) {
+    public Order(Long customer_id, Long item_id, Long orderId, int totalAmount) {
         this.customerId = customer_id;
         this.itemId = item_id;
         this.orderId = orderId;
-        this.total_amount = total_amount;
+        this.totalAmount = totalAmount;
     }*/
 
 
@@ -52,11 +52,11 @@ public class Order {
 
 
 
-    public int getTotal_amount() {
-        return total_amount;
+    public int getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setTotal_amount(int total_amount) {
-        this.total_amount = total_amount;
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
     }
 }

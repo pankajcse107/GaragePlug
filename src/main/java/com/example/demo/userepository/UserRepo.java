@@ -9,4 +9,6 @@ public interface UserRepo extends CrudRepository<User,Long> {
 
 
     User findByNameAndId(String name, Long id);
+
+    void getCustomerStatus();
 }
