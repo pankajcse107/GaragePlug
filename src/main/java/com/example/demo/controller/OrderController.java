@@ -17,8 +17,9 @@ public class OrderController {
     }
 
     @PostMapping
-    public Order create(@RequestBody Order order) {
-        return orderService.createOrder(order);
+    public String create(Order order) {
+//        return orderService.createOrder(order);
+        return "hello";
     }
 
            /* @RequestMapping(method = RequestMethod.GET)

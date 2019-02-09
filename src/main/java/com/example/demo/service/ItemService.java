@@ -9,22 +9,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Service
 public class ItemService {
     ItemRepository itemRepository;
+
     @Autowired
     public ItemService(ItemRepository itemRepository) {
 
         this.itemRepository = itemRepository;
     }
-    public Item post(@RequestBody Item item)
-    {
+
+    public Item post(@RequestBody Item item) {
         return itemRepository.save(item);
     }
-    public Iterable<Item> get()
-    {
+
+    public Iterable<Item> get() {
         return itemRepository.findAll();
     }
-    public void deleteAll()
-    {
+
+    public void deleteAll() {
         itemRepository.deleteAll();
+    }
+
+    public Item getItem(Long id) {
+        return itemRepository.findById(id).get();
     }
 
 }
