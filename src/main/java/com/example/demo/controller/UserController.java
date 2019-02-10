@@ -24,7 +24,7 @@ public class UserController
         userService.deleteAll();
     }
     @GetMapping("/get")
-    public User findById(Long id)
+    public User findById(@RequestParam Long id)
     {
         return userService.findUser(id);
     }
