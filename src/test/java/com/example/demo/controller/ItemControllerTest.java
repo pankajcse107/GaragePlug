@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,29 +25,30 @@ import java.util.*;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 
-@RunWith(SpringRunner.class)
 
-
-@WebMvcTest(ItemController.class)
 public class ItemControllerTest {
 
-    @Autowired
-    MockMvc mockmvc;
+
+
+
     @Mock
     ItemService itemService;
 
     @Mock
     ItemRepository itemRepository;
+
     @InjectMocks
     ItemController itemController;
 
 
     @Test
     public void itemGetById() {
-            Item item = new Item();
+        Item item = new Item();
+
+        item.setItemName("raju");
             Mockito.when(itemController.getById(10L)).thenReturn(item);
             Item i = itemController.getById(10L);
-            assertEquals(i, item);
+            assertEquals(i.getItemName(), item.getItemName());
         }
 
 

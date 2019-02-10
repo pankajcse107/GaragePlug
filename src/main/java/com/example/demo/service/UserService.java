@@ -9,37 +9,18 @@ public class UserService
 {
 
     private UserRepo userRepo;
-    private User user;
+
 
     @Autowired
-    public UserService(UserRepo userRepo)
-    {
+    public UserService(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
 
 
-    public void deleteAll()
-    {
+    public void deleteAll() {
          userRepo.deleteAll();
     }
-   /* public User PostStatus(User user)
-    {
-      int i = user.getNoOfOrders();
-      if(i >=10&& i<20)
-      {
-          System.out.println("You are promoted to gold");
-      }
-      else
-          if(i>=20&&i<30)
-          {
-              System.out.println("you are promoted to planinum");
-          }
-          else
-              System.out.println("regular");
 
-      User userS = userRepo.save(user);
-      return userS;
-    }*/
     public void updateCategory(User user)
     {
         int i = user.getNoOfOrders();
@@ -62,8 +43,11 @@ public class UserService
     }
 
     public User createUser(User customer)
-
     {
         return userRepo.save(customer);
+    }
+    public Iterable<User> findAl()
+    {
+        return userRepo.findAll();
     }
 }

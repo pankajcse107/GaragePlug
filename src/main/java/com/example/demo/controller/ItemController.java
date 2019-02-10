@@ -29,7 +29,8 @@ public class ItemController {
     }
 
     @GetMapping("/get")
-    public Item getById(Long id) {
+    public Item getById(@RequestParam Long id)
+    {
         return itemService.getItem(id);
     }
 

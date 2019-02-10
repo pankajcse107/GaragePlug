@@ -9,48 +9,36 @@ import com.example.demo.userepository.UserRepo;
 
 @RestController
 @RequestMapping("/customer1")
-public class UserController {
-    private UserRepo userRepo;
-    private final UserService userService;
-
-@Autowired
-public UserController(UserRepo userRepo, UserService userService)
+public class UserController
 {
-    this.userRepo = userRepo;
-    this.userService = userService;
-}
+    private UserService userService;
+    @Autowired
+     public  UserController(UserService userService)
+    {
+        this.userService = userService;
+    }
 
-@PostMapping()
-  public User createCostumer(@RequestBody User customer)
- {
-    return userService.createUser(customer);
- }
- @RequestMapping(method = RequestMethod.GET)
-    public  Iterable<User> get()
-  {
-        return userRepo.findAll();
-  }
-  @RequestMapping(path = "/{id}",method = RequestMethod.GET)
-    public User getDetails(@PathVariable("id") Long id)
-  {
-      return userRepo.findById(id).get();
-  }
-  @RequestMapping(value = "na",method = RequestMethod.GET)
-    public int getOrderNo(@RequestParam (value = "name") String name ,@RequestParam(value = "id") Long id)
-  {
-      return userRepo.findByNameAndId(name,id).getNoOfOrders();
-  }
-  @RequestMapping(value = "status",method = RequestMethod.GET)
-          public String getStatus(@RequestParam (value = "name") String name,@RequestParam(value = "id") Long id)
-  {
-      return userRepo.findByNameAndId(name,id).getCustomerStatus();
-  }
+    @DeleteMapping
+    public void deleteAll()
+    {
+        userService.deleteAll();
+    }
+    @GetMapping("/get")
+    public User findById(Long id)
+    {
+        return userService.findUser(id);
+    }
+    @PostMapping
+    public void createUser(@RequestBody User user)
+    {
+        userService.createUser(user);
+    }
+    @GetMapping
+    public Iterable<User> getAll()
+    {
+        return userService.findAl();
+    }
 
-  @DeleteMapping("/delete")
-  public void deleteAll()
-  {
-       userService.deleteAll();
-  }
 
 
 
