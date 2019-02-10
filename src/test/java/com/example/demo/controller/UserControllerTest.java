@@ -13,6 +13,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserControllerTest {
@@ -41,6 +42,10 @@ public class UserControllerTest {
 
     @Test
     public void createUser() {
+        user.setName("raman");
+        Mockito.when(userService.createUser(user)).thenReturn(user);
+        String u = user.getName();
+        assertEquals(u,user.getName());
     }
 
     @Test
