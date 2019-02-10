@@ -25,11 +25,13 @@ import java.util.*;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 
-
+@RunWith(MockitoJUnitRunner.class)
 public class ItemControllerTest {
 
 
 
+    @Mock
+    Item item;
 
     @Mock
     ItemService itemService;
@@ -43,12 +45,19 @@ public class ItemControllerTest {
 
     @Test
     public void itemGetById() {
-        Item item = new Item();
 
         item.setItemName("raju");
-            Mockito.when(itemController.getById(10L)).thenReturn(item);
-            Item i = itemController.getById(10L);
+            Mockito.when(itemService.getItem(10L)).thenReturn(item);
+            Item i = itemService.getItem(10L);
             assertEquals(i.getItemName(), item.getItemName());
+        }
+
+        @Test
+        public  void deleteItem()
+        {
+            item = item.setItemName("raju");
+            Mockito.when(itemService.deleteAll()).thenReturn(item);
+            
         }
 
 
