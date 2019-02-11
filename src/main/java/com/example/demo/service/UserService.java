@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.entities.Category;
 import com.example.demo.entities.User;
 import com.example.demo.userepository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ public class UserService
 {
 
     private UserRepo userRepo;
+    private Category category;
 
 
     @Autowired
@@ -26,15 +28,16 @@ public class UserService
         int i = user.getNoOfOrders();
         if(i >=10&& i<20)
         {
-            user.setCustomerStatus("Gold");
+            System.out.println("GOLD");
         }
         else
         if(i>=20)
         {
-            user.setCustomerStatus("Platinum");
+            System.out.println("PLATINUM");
+
         }
         else
-            user.setCustomerStatus("Regular");
+            System.out.println("REGULAR");
         User userS = userRepo.save(user);
     }
     public User findUser(Long id)

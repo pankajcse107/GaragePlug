@@ -16,24 +16,25 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserControllerTest {
+public class UserServiceTest {
+
+
+
 
    @Mock
     UserRepo userRepo;
 
-    @Mock
+    @InjectMocks
     UserService userService;
 
-    @Mock
-    User user;
-
-    @InjectMocks
-    UserController userController;
-
     @Test
-    public void deleteAll(){
-        User user = new User();
+    public void deleteAll()
+    {
+        //WHEN
+        userService.deleteAll();
 
+        //THEN
+        Mockito.verify(userRepo).deleteAll();
     }
 
     @Test
@@ -42,13 +43,17 @@ public class UserControllerTest {
 
     @Test
     public void createUser() {
-        user.setName("raman");
-        Mockito.when(userService.createUser(user)).thenReturn(user);
-        String u = user.getName();
-        assertEquals(u,user.getName());
+        //GIVEN
+        User user = new User();
+       user.setName("raman");
+
+       //WHEN
+        Mockito.when(userRepo.save(user)).thenReturn(user);
+        User u = userService.createUser(user);
+
+        //THEN
+        assertEquals(u , user);
     }
 
-    @Test
-    public void getAll() {
-    }
+
 }

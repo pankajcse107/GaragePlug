@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.entities.Category;
 import com.example.demo.entities.Order;
 import com.example.demo.entities.User;
 import com.example.demo.userepository.OrderRepository;
@@ -8,8 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderService {
-     OrderRepository orderRepository;
-     UserService userService;
+    private OrderRepository orderRepository;
+     private UserService userService;
+     private Category category;
 
 
      @Autowired
@@ -44,10 +46,10 @@ public class OrderService {
 
 
      }
-     private void updatePrice(Order order,User user)
+     public void updatePrice(Order order,User user)
      {
           int price = order.getTotalAmount();
-          if(user.getCustomerStatus() == "Gold")
+          if(user.getCustomerStatus() == "Gold" )
           {
                 price  = (int) (order.getTotalAmount()*0.1);
           }

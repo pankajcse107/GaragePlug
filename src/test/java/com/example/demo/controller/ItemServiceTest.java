@@ -24,41 +24,76 @@ import java.util.*;
 
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ItemControllerTest {
+public class ItemServiceTest {
 
 
 
     @Mock
     Item item;
 
-    @Mock
+    @InjectMocks
     ItemService itemService;
 
     @Mock
     ItemRepository itemRepository;
 
-    @InjectMocks
-    ItemController itemController;
 
 
     @Test
     public void itemGetById() {
-
+       //Given
         item.setItemName("raju");
-            Mockito.when(itemService.getItem(10L)).thenReturn(item);
+        Mockito.when(itemRepository.findById(10L)).thenReturn(Optional.of(item));
+
+           //WHEN
+
             Item i = itemService.getItem(10L);
+
+            //THEN
             assertEquals(i.getItemName(), item.getItemName());
+            Mockito.verify(itemRepository).findById(10L);
         }
 
-       /* @Test
-        public  void deleteItem()
-        {
-            item = item.setItemName("raju");
-            Mockito.when(itemService.deleteAll()).thenReturn(item);
-            
-        }*/
+       @Test
+    public void deleteAll()
+       {
+           //WHEN
+            itemService.deleteAll();
+
+           //THEN
+           Mockito.verify(itemRepository).deleteAll();
+
+       }
+       @Test
+    public void postTest() {
+           //GIVEN
+           Item item = new Item();
+           item.setItemName("Deodrant");
+
+           //WHEN
+           Mockito.when(itemRepository.save(item)).thenReturn(item);
+           Item i = itemService.post(item);
+
+
+           //THEN
+           assertEquals(i,item);
+       }
+
+       @Test
+    public  void  getAll()
+       {
+
+           //WHEN
+           itemService.get();
+
+           //THEN
+           Mockito.verify(itemRepository).findAll();
+
+
+       }
 
 
 
