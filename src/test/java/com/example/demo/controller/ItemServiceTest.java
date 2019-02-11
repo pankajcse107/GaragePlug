@@ -5,6 +5,7 @@ import com.example.demo.entities.User;
 import com.example.demo.service.ItemService;
 import com.example.demo.userepository.ItemRepository;
 import junit.runner.Version;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -86,11 +87,16 @@ public class ItemServiceTest {
     public  void  getAll()
        {
 
-           //WHEN
-           itemService.get();
+           //GIVEN
+           List<Item> items = new ArrayList<>();
+           items.add(item);
+
+          //WHEN
+           Mockito.when(itemRepository.findAll()).thenReturn(items);
 
            //THEN
-           Mockito.verify(itemRepository).findAll();
+           Iterable<Item> i = itemService.get();
+           assertEquals(i,items);
 
 
        }

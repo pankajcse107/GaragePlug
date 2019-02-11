@@ -10,6 +10,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -70,11 +72,18 @@ public class UserServiceTest {
     @Test
     public void findAll()
     {
+        List<User> users = new ArrayList<>();
+        //GIVEN
+        User user = new User();
+
+
+        users.add(user);
         //WHEN
-        userService.findAll();
+        Mockito.when(userRepo.findAll()).thenReturn(users);
 
         //THEN
-        Mockito.verify(userRepo).findAll();
+        Iterable<User> u = userService.findAll();
+        assertEquals(u,users);
     }
 
 
