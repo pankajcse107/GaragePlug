@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.entities.Category;
+import com.example.demo.entities.Order;
 import com.example.demo.entities.User;
+import com.example.demo.userepository.OrderRepository;
 import com.example.demo.userepository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,12 +12,15 @@ public class UserService
 {
 
     private UserRepo userRepo;
-    private Category category;
+    private final OrderRepository orderRepository;
+
+
 
 
     @Autowired
-    public UserService(UserRepo userRepo) {
+    public UserService(UserRepo userRepo, OrderRepository orderRepository) {
         this.userRepo = userRepo;
+        this.orderRepository = orderRepository;
     }
 
 
@@ -26,15 +31,15 @@ public class UserService
     public void updateCategory(User user)
     {
 
+        int count = orderRepository.countByCustomerId(user.getId());
 
-        int i = user.getNoOfOrders();
-        if(i >=10&& i<20)
+        if(count >=10&& count<20)
         {
             user.setCategory(Category.GOLD);
 
         }
         else
-        if(i>=20)
+        if(count>=20)
         {
             user.setCategory(Category.PLATINUM);
 

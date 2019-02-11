@@ -54,23 +54,31 @@ public class OrderServiceTest {
     }
     @Test
     public void createOrderTest()
-    {
-
-        //GIVEN
+    { //GIVEN
         Order order = new Order();
         order.setTotalAmount(5000);
         order.setCustomerId(21L);
-        orderService.updatePrice(order,user);
-        orderService.incrimentOrderCount(user);
 
+        User user = new User();
+        user.setCustomerStatus("Gold");
+        user.setNoOfOrders(4);
 
+        Mockito.when(orderRepository.save(order)).thenReturn(order);
+        Mockito.when(userService.findUser(order.getCustomerId())).thenReturn(user);
 
         //WHEN
-        Mockito.when(orderRepository.save(order)).thenReturn(order);
+        int noOfOrders = user.getNoOfOrders();
+
         Order o = orderService.createOrder(order);
+        int newPrice = order.getNetAmount();
 
         //THEN
+        Mockito.verify(orderRepository, Mockito.times(2)).save(order);
+        Mockito.verify(userService).updateCategory(user);
+        assertEquals(newPrice, 5000);
+         assertEquals(noOfOrders+1, user.getNoOfOrders());
         assertEquals(o.getCustomerId(),order.getCustomerId());
+
     }
 
 

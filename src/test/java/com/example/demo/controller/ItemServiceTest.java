@@ -90,12 +90,12 @@ public class ItemServiceTest {
            //GIVEN
            List<Item> items = new ArrayList<>();
            items.add(item);
-
-          //WHEN
            Mockito.when(itemRepository.findAll()).thenReturn(items);
 
-           //THEN
+           //WHEN
            Iterable<Item> i = itemService.get();
+
+           //THEN
            assertEquals(i,items);
 
 

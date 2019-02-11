@@ -78,11 +78,12 @@ public class UserServiceTest {
 
 
         users.add(user);
-        //WHEN
         Mockito.when(userRepo.findAll()).thenReturn(users);
 
-        //THEN
+        //WHEN
         Iterable<User> u = userService.findAll();
+
+        //THEN
         assertEquals(u,users);
     }
 
