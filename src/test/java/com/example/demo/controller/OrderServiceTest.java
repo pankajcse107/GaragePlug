@@ -15,6 +15,9 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class OrderServiceTest {
 
+    @Mock
+    User user;
+
 
     @Mock
     OrderRepository orderRepository;
@@ -43,12 +46,12 @@ public class OrderServiceTest {
 
     }
     @Test
-    public void createOrder()
+    public void createOrderTest()
     {
         //GIVEN
         Order order = new Order();
         order.setCustomerId(21L);
-        
+
         //WHEN
         Mockito.when(orderRepository.save(order)).thenReturn(order);
         Order o = orderService.createOrder(order);
@@ -58,6 +61,8 @@ public class OrderServiceTest {
 
 
     }
+
+
 
 
 }

@@ -36,7 +36,7 @@ public class UserController
     @GetMapping
     public Iterable<User> getAll()
     {
-        return userService.findAl();
+        return userService.findAll();
     }
 
 

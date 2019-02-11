@@ -16,5 +16,7 @@ public class User
     private String email;
     private int noOfOrders;
     private String customerStatus;
+    @Enumerated(EnumType.STRING)
+    private Category category= Category.REGULAR;
 
 }

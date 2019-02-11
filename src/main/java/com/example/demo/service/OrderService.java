@@ -6,6 +6,7 @@ import com.example.demo.entities.User;
 import com.example.demo.userepository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class OrderService {
@@ -26,7 +27,7 @@ public class OrderService {
           user.setNoOfOrders(i+1);
 
      }
-     public Order createOrder(Order order)
+     public Order createOrder( Order order)
      {
           orderRepository.save(order);
           User user = userService.findUser(order.getCustomerId());
@@ -59,8 +60,8 @@ public class OrderService {
           }
 
           order.setNetAmount(price);
-          orderRepository.save(order);
-
+         ;
+         orderRepository.save(order);
      }
 
 }

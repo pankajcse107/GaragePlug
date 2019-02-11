@@ -10,6 +10,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
@@ -38,10 +40,6 @@ public class UserServiceTest {
     }
 
     @Test
-    public void findById() {
-    }
-
-    @Test
     public void createUser() {
         //GIVEN
         User user = new User();
@@ -53,6 +51,30 @@ public class UserServiceTest {
 
         //THEN
         assertEquals(u , user);
+    }
+    @Test
+    public void findUserById()
+    {
+        //GIVEN
+        User user = new User();
+        user.setName("pankaj");
+
+        //WHEN
+        Mockito.when(userRepo.findById(10l)).thenReturn(Optional.of(user));
+        User u = userService.findUser(10l);
+
+        //THEN
+        assertEquals(u,user);
+
+    }
+    @Test
+    public void findAll()
+    {
+        //WHEN
+        userService.findAll();
+
+        //THEN
+        Mockito.verify(userRepo).findAll();
     }
 
 

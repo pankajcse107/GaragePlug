@@ -25,19 +25,22 @@ public class UserService
 
     public void updateCategory(User user)
     {
+
+
         int i = user.getNoOfOrders();
         if(i >=10&& i<20)
         {
-            System.out.println("GOLD");
+            user.setCategory(Category.GOLD);
+
         }
         else
         if(i>=20)
         {
-            System.out.println("PLATINUM");
+            user.setCategory(Category.PLATINUM);
 
         }
         else
-            System.out.println("REGULAR");
+            user.setCategory(Category.REGULAR);
         User userS = userRepo.save(user);
     }
     public User findUser(Long id)
@@ -49,7 +52,7 @@ public class UserService
     {
         return userRepo.save(customer);
     }
-    public Iterable<User> findAl()
+    public Iterable<User> findAll()
     {
         return userRepo.findAll();
     }
