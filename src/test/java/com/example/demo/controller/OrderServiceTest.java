@@ -96,10 +96,11 @@ public class OrderServiceTest {
          Mockito.when(orderRepository.save(newOrder)).thenReturn(newOrder);
 
          //WHEN
-         Order order1 = orderService.updateOrder(newOrder,21L);
+          orderService.updateOrder(newOrder,21L);
+         int totalPrice = order.getTotalAmount();
 
          //THEN
-        assertEquals(order1.getTotalAmount(),6000);
+        assertEquals(totalPrice,6000);
 
 
 

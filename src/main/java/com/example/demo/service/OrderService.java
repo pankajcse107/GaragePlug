@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Optional;
+
 @Service
 public class OrderService {
     private OrderRepository orderRepository;
@@ -66,21 +68,27 @@ public class OrderService {
 
          orderRepository.save(order);
      }
-     public Order updateOrder(Order order,Long orderId)
+     public void updateOrder(Order order,Long orderId)
      {
-         Order order1 = orderRepository.findById(orderId).get();
+         if(orderId ==null) {
+             return;
+         }
 
 
-
-               order1.setTotalAmount(order.getTotalAmount());
-
-               return orderRepository.save(order1);
-
-
-
-
-
+         Optional<Order> orderOptional = orderRepository.findById(orderId);
+         if(!orderOptional.isPresent()) {
+             return;
+         }
+         Order order1 = orderOptional.get();
+         order1.setTotalAmount(order.getTotalAmount());
+         orderRepository.save(order1);
      }
+
+
+
+
+
+
      public Iterable<Order> getOrder()
      {
         return orderRepository.findAll();
