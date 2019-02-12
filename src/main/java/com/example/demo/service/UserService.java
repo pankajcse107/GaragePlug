@@ -54,11 +54,19 @@ public class UserService
     public void updateUser( User user, Long id)
     {
 
-        User user1=userRepo.findById(id).get();
 
-        user1.setEmail(user.getEmail());
+        User user1=userRepo.findById(id).get();
+        Long i = user1.getId();
+
+        if(i != 0) {
+            user1.setEmail(user.getEmail());
 
             userRepo.save(user1);
+        }
+        else
+        {
+            System.out.println("User does not exist ");
+        }
     }
     public User findUser(Long id)
     {

@@ -66,15 +66,19 @@ public class OrderService {
 
          orderRepository.save(order);
      }
-     public void updateOrder(Order order,Long orderId)
+     public Order updateOrder(Order order,Long orderId)
      {
          Order order1 = orderRepository.findById(orderId).get();
 
 
 
-             order1.setItemId(order.getItemId());
+               order1.setTotalAmount(order.getTotalAmount());
 
-             orderRepository.save(order1);
+               return orderRepository.save(order1);
+
+
+
+
 
      }
      public Iterable<Order> getOrder()

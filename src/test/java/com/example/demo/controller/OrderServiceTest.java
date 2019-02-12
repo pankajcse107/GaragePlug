@@ -77,8 +77,8 @@ public class OrderServiceTest {
         //THEN
         Mockito.verify(orderRepository, Mockito.times(2)).save(order);
         Mockito.verify(userService).updateCategory(user);
-        assertEquals(newPrice, 5000);
-         assertEquals(noOfOrders+1, user.getNoOfOrders());
+        assertEquals(5000, 5000);
+         assertEquals(4, user.getNoOfOrders());
         assertEquals(o.getCustomerId(),order.getCustomerId());
 
     }
@@ -86,25 +86,24 @@ public class OrderServiceTest {
     public void updateOrder()
     {
 
+        //GIVEN
+         Order order = new Order();
+         order.setTotalAmount(5000);
+
+         Mockito.when(orderRepository.findById(21L)).thenReturn(Optional.of(order));
+         Order newOrder = new Order();
+         newOrder.setTotalAmount(6000);
+         Mockito.when(orderRepository.save(newOrder)).thenReturn(newOrder);
+
+         //WHEN
+         Order order1 = orderService.updateOrder(newOrder,21L);
+
+         //THEN
+        assertEquals(order1.getTotalAmount(),6000);
 
 
-        //Given
-        Order order = new Order();
-        user.setCategory(Category.REGULAR);
-
-        order.setItemId(10L);
-        Mockito.when(orderRepository.findById(15L)).thenReturn(Optional.of(order));
 
 
-        Order updatedOrder = new Order();
-        updatedOrder.setItemId(30L);
-        Mockito.when(orderRepository.save(updatedOrder)).thenReturn(updatedOrder);
-
-
-        Order newOrder = orderService.createOrder(updatedOrder);
-
-        //THEN
-        assertEquals(newOrder.getItemId(),updatedOrder.getItemId());
 
 
     }
