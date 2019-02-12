@@ -25,6 +25,7 @@ public class UserController
     }
     @GetMapping("/get")
     public User findById(@RequestParam Long id)
+
     {
         return userService.findUser(id);
     }
@@ -38,7 +39,11 @@ public class UserController
     {
         return userService.findAll();
     }
-
+    @PutMapping()
+    public  void updateUser(@RequestBody User user,@RequestParam Long id)
+    {
+        userService.updateUser(user,id);
+    }
 
 
 

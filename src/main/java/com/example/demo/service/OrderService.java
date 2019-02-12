@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entities.Category;
+import com.example.demo.entities.Item;
 import com.example.demo.entities.Order;
 import com.example.demo.entities.User;
 import com.example.demo.userepository.OrderRepository;
@@ -34,7 +35,7 @@ public class OrderService {
           orderRepository.save(order);
           User user = userService.findUser(order.getCustomerId());
           updatePrice(order,user);
-        //  incrimentOrderCount(user);
+          //incrimentOrderCount(user);
           userService.updateCategory(user);
 
 
@@ -62,8 +63,23 @@ public class OrderService {
           }
 
           order.setNetAmount(price);
-         ;
+
          orderRepository.save(order);
+     }
+     public void updateOrder(Order order,Long orderId)
+     {
+         Order order1 = orderRepository.findById(orderId).get();
+
+
+
+             order1.setItemId(order.getItemId());
+
+             orderRepository.save(order1);
+
+     }
+     public Iterable<Order> getOrder()
+     {
+        return orderRepository.findAll();
      }
 
 }

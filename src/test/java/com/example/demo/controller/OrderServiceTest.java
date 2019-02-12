@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entities.Category;
 import com.example.demo.entities.Order;
 import com.example.demo.entities.User;
 import com.example.demo.service.OrderService;
@@ -14,6 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
@@ -78,6 +80,32 @@ public class OrderServiceTest {
         assertEquals(newPrice, 5000);
          assertEquals(noOfOrders+1, user.getNoOfOrders());
         assertEquals(o.getCustomerId(),order.getCustomerId());
+
+    }
+    @Test
+    public void updateOrder()
+    {
+
+
+
+        //Given
+        Order order = new Order();
+        user.setCategory(Category.REGULAR);
+
+        order.setItemId(10L);
+        Mockito.when(orderRepository.findById(15L)).thenReturn(Optional.of(order));
+
+
+        Order updatedOrder = new Order();
+        updatedOrder.setItemId(30L);
+        Mockito.when(orderRepository.save(updatedOrder)).thenReturn(updatedOrder);
+
+
+        Order newOrder = orderService.createOrder(updatedOrder);
+
+        //THEN
+        assertEquals(newOrder.getItemId(),updatedOrder.getItemId());
+
 
     }
 

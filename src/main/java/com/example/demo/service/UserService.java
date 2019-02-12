@@ -1,11 +1,12 @@
 package com.example.demo.service;
 
 import com.example.demo.entities.Category;
-import com.example.demo.entities.Order;
 import com.example.demo.entities.User;
 import com.example.demo.userepository.OrderRepository;
 import com.example.demo.userepository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Optional;
 
 @org.springframework.stereotype.Service
 public class UserService
@@ -47,6 +48,17 @@ public class UserService
         else
             user.setCategory(Category.REGULAR);
         User userS = userRepo.save(user);
+    }
+
+
+    public void updateUser( User user, Long id)
+    {
+
+        User user1=userRepo.findById(id).get();
+
+        user1.setEmail(user.getEmail());
+
+            userRepo.save(user1);
     }
     public User findUser(Long id)
     {

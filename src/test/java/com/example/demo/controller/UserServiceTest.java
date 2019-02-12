@@ -16,14 +16,15 @@ import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
 
 
+  @Mock
+  User user;
 
    @Mock
     UserRepo userRepo;
@@ -85,6 +86,35 @@ public class UserServiceTest {
 
         //THEN
         assertEquals(u,users);
+    }
+    @Test
+    public void updateUserTest()
+    {
+        //GIVEN
+        //Whatever is there in the updateUser method as input parameter has to be given in given clause
+        User user = new User();
+         user.setEmail("pankaj");
+        Mockito.when(userRepo.findById(10L)).thenReturn(Optional.of(user));
+
+
+        //WHEN
+        //Here we have created an new object  of User class as UpdateUser to test if the email is getting updated or not
+        User updatedUser = new User();
+        updatedUser.setEmail("abc");
+        Mockito.when(userRepo.save(user)).thenReturn(updatedUser);
+
+        User user2 = userService.createUser(user);
+
+
+        //THEN
+        assertEquals(updatedUser.getEmail(),user2.getEmail());
+
+
+
+
+
+
+
     }
 
 

@@ -21,18 +21,17 @@ public class OrderController {
         orderService.createOrder(order);
 
     }
+    @GetMapping
+    public Iterable<Order> getOrder()
 
-           /* @RequestMapping(method = RequestMethod.GET)
-            public Iterable<Order> postAll()
-            {
-               return orderRepository.findAll();
-            }
+    {
+       return orderService.getOrder();
+    }
 
-            @DeleteMapping("/delete")
-           public void deleteAll()
-
-            {
-                orderRepository.deleteAll();
-            }*/
+    @PutMapping()
+    public void updateOrder(@RequestBody Order order,@RequestParam Long orderId)
+    {
+        orderService.updateOrder(order,orderId);
+    }
 
 }
